@@ -10,12 +10,12 @@ import Foundation
 typealias MinutesToPrepare = Int
 
 class MenuController {
+    static let shared = MenuController()
+    
     let baseURL = URL(string: "http://localhost:8080/")!
     
     func fetchCategories() async throws -> [String] {
         let categoriesURL = baseURL.appendingPathComponent("categories")
-        print(categoriesURL)
-        
         let (data, response) = try await URLSession.shared.data(from: categoriesURL)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {throw MenuControllerError.categoriesNotFound}

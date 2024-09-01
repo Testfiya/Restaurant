@@ -10,24 +10,26 @@ import Foundation
 typealias MinutesToPrepare = Int
 
 class MenuController {
-    let baseURL = URL(string: "http://localhost:8080")!
+    let baseURL = URL(string: "http://localhost:8080/")!
     
-    func fetchCatagories() async throws -> [String] {
-        let catagoriesURL = baseURL.appendingPathComponent("catagories")
-        let (data, response) = try await URLSession.shared.data(from: catagoriesURL)
+    func fetchCategories() async throws -> [String] {
+        let categoriesURL = baseURL.appendingPathComponent("categories")
+        print(categoriesURL)
         
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {throw MenuControllerError.catagoriesNotFound}
+        let (data, response) = try await URLSession.shared.data(from: categoriesURL)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {throw MenuControllerError.categoriesNotFound}
         
         let decoder = JSONDecoder()
-        let catagoriesResponse = try decoder.decode(CatagoriesResponse.self, from: data)
+        let categoriesResponse = try decoder.decode(CategoriesResponse.self, from: data)
         
-        return catagoriesResponse.Catagories
+        return categoriesResponse.categories
     }
     
-    func fetchMenuItems(forCatagory categoryName: String) async throws -> [MenuItem] {
+    func fetchMenuItems(forCategory categoryName: String) async throws -> [MenuItem] {
         let baseMenuURL = baseURL.appendingPathComponent("menu")
         var components = URLComponents(url: baseMenuURL, resolvingAgainstBaseURL: true)!
-        components.queryItems = [URLQueryItem(name: "catagory", value: categoryName)]
+        components.queryItems = [URLQueryItem(name: "category", value: categoryName)]
         let menuURL = components.url!
         
         let (data, response) = try await URLSession.shared.data(from: menuURL)
@@ -62,7 +64,7 @@ class MenuController {
     }
     
     enum MenuControllerError: Error, LocalizedError {
-        case catagoriesNotFound
+        case categoriesNotFound
         case menuItemsNotFound
         case orderRequestFailed
     }

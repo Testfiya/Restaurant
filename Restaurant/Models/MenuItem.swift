@@ -12,7 +12,7 @@ struct MenuItem: Codable {
     var name: String
     var detailText: String
     var price: Double
-    var catagory: String
+    var category: String
     var imageURL: URL
     
     enum CodingKeys: String, CodingKey {
@@ -20,7 +20,7 @@ struct MenuItem: Codable {
         case name
         case detailText = "description"
         case price
-        case catagory
+        case category
         case imageURL = "image_url"
     }
 }

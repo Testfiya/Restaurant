@@ -11,8 +11,8 @@ struct MenuResponse: Codable {
     let items: [MenuItem]
 }
 
-struct CatagoriesResponse: Codable {
-    let Catagories: [String]
+struct CategoriesResponse: Codable {
+    let categories: [String]
 }
 
 struct OrderResponse: Codable {

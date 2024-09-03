@@ -51,6 +51,7 @@ class CategoryTableViewController: UITableViewController {
         let category = categories[indexPath.row]
         return MenuTableViewController(coder: coder, category: category)
     }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

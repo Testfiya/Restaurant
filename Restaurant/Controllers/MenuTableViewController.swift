@@ -9,7 +9,6 @@ import UIKit
 
 class MenuTableViewController: UITableViewController {
     let category: String
-    let menuController = MenuController()
     var menuItems = [MenuItem]()
     
     init?(coder: NSCoder, category: String) {
@@ -79,7 +78,15 @@ class MenuTableViewController: UITableViewController {
         
         var content = cell.defaultContentConfiguration()
         content.text = menuItem.name
-        content.secondaryText = "$\(menuItem.price)"
+        content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
         cell.contentConfiguration = content
+    }
+    
+    @IBSegueAction func showMenuItem(_ coder: NSCoder, sender: Any?) -> MenuItemDetailViewController? {
+        guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else { return nil }
+        
+        let menuItem = menuItems[indexPath.row]
+        
+        return MenuItemDetailViewController(coder: coder, menuItem: menuItem)
     }
 }

@@ -22,6 +22,7 @@
 		D589D6DC2C8308980004CFF6 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = D589D6DB2C8308980004CFF6 /* Order.swift */; };
 		D589D6E02C8309900004CFF6 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D589D6DF2C83098F0004CFF6 /* MenuController.swift */; };
 		D5DF6E232C87A41600C7B499 /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF6E222C87A41600C7B499 /* MenuItemCell.swift */; };
+		D5DF6E252C87AEA600C7B499 /* Restoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF6E242C87AEA600C7B499 /* Restoration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D589D6DB2C8308980004CFF6 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		D589D6DF2C83098F0004CFF6 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		D5DF6E222C87A41600C7B499 /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
+		D5DF6E242C87AEA600C7B499 /* Restoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restoration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				D589D6D92C8306A50004CFF6 /* ResponseModels.swift */,
 				D589D6DB2C8308980004CFF6 /* Order.swift */,
 				D589D6D72C8305160004CFF6 /* MenuItem.swift */,
+				D5DF6E242C87AEA600C7B499 /* Restoration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				D589D6D42C8303E00004CFF6 /* CategoryTableViewController.swift in Sources */,
 				D589D6BE2C8302E20004CFF6 /* SceneDelegate.swift in Sources */,
 				D5DF6E232C87A41600C7B499 /* MenuItemCell.swift in Sources */,
+				D5DF6E252C87AEA600C7B499 /* Restoration.swift in Sources */,
 				D506DCC22C873BB30021AD82 /* OrderConfirmationViewController.swift in Sources */,
 				D589D6D32C8303E00004CFF6 /* MenuItemDetailViewController.swift in Sources */,
 			);

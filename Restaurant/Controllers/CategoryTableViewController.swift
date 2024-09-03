@@ -30,6 +30,11 @@ class CategoryTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MenuController.shared.updateUserActivity(with: .categories)
+    }
+    
     func updateUI(with categories: [String]) {
         self.categories = categories
         self.tableView.reloadData()

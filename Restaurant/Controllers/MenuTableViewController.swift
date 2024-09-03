@@ -11,6 +11,8 @@ class MenuTableViewController: UITableViewController {
     let category: String
     var menuItems = [MenuItem]()
     
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
+    
     init?(coder: NSCoder, category: String) {
         self.category = category
         super.init(coder: coder)
@@ -37,6 +39,12 @@ class MenuTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        imageLoadTasks.forEach { key, value in value.cancel() }
     }
     
     func updateUI(with menuItems: [MenuItem]) {
@@ -79,7 +87,23 @@ class MenuTableViewController: UITableViewController {
         var content = cell.defaultContentConfiguration()
         content.text = menuItem.name
         content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
+        content.image = UIImage(systemName: "photo.on.rectangle")
         cell.contentConfiguration = content
+        Task.init {
+            if let image = try? await MenuController.shared.fetchImage(from: menuItem.imageURL) {
+                if let currentIndexPath = self.tableView.indexPath(for: cell), currentIndexPath == indexPath {
+                    var content = cell.defaultContentConfiguration()
+                    content.text = menuItem.name
+                    content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
+                    content.image = image
+                    cell.contentConfiguration = content
+                }
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        imageLoadTasks[indexPath]?.cancel()
     }
     
     @IBSegueAction func showMenuItem(_ coder: NSCoder, sender: Any?) -> MenuItemDetailViewController? {

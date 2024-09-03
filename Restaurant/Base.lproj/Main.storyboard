@@ -175,17 +175,71 @@
                             <outlet property="delegate" destination="LPF-Bu-33n" id="HAr-cz-SQw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Wrh-6h-c1o"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Wrh-6h-c1o">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="ACZ-io-Daz">
+                            <connections>
+                                <action selector="submitTapped:" destination="LPF-Bu-33n" id="wWH-u8-90p"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Fxj-cZ-fc6" kind="presentation" identifier="confirmOrder" destinationCreationSelector="confirmOrder:sender:" id="kog-43-kPL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WfB-dj-W3x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2250" y="378"/>
         </scene>
+        <!--Order Confirmation View Controller-->
+        <scene sceneID="0HE-g1-QX3">
+            <objects>
+                <viewController id="Fxj-cZ-fc6" customClass="OrderConfirmationViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7bN-gR-Vzc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="248" translatesAutoresizingMaskIntoConstraints="NO" id="Riq-vz-mn0">
+                                <rect key="frame" x="0.0" y="269.66666666666663" width="393" height="302.66666666666663"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmation" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjq-t6-7hv">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OyR-Lf-6ej">
+                                        <rect key="frame" x="0.0" y="268.33333333333331" width="393" height="34.333333333333314"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Dismiss"/>
+                                        <connections>
+                                            <segue destination="gRM-fI-nfc" kind="unwind" identifier="dismissConfirmation" unwindAction="unwindToOrderListWithSegue:" id="IGW-vw-cUQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DRk-i7-bjD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DRk-i7-bjD" firstAttribute="trailing" secondItem="Riq-vz-mn0" secondAttribute="trailing" id="SXU-o1-YpJ"/>
+                            <constraint firstItem="Riq-vz-mn0" firstAttribute="leading" secondItem="DRk-i7-bjD" secondAttribute="leading" id="W1S-k1-cfI"/>
+                            <constraint firstItem="Riq-vz-mn0" firstAttribute="centerY" secondItem="7bN-gR-Vzc" secondAttribute="centerY" id="cd8-hE-w3b"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmationLabel" destination="Tjq-t6-7hv" id="G2H-Op-hVm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fd8-5R-EyM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="gRM-fI-nfc" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3130.5343511450378" y="376.76056338028172"/>
+        </scene>
         <!--Your Order-->
         <scene sceneID="NxZ-yV-Eja">
             <objects>
                 <navigationController id="Ea4-RM-I4s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Your Order" selectedImage="bag" catalog="system" id="iLh-7b-l3h"/>
+                    <tabBarItem key="tabBarItem" title="Your Order" image="bag" catalog="system" id="iLh-7b-l3h"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lWh-Ux-VZg">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -243,7 +297,7 @@
         <scene sceneID="stb-HK-FQp">
             <objects>
                 <navigationController id="mfx-OW-3rz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Menu" selectedImage="list.bullet" catalog="system" id="3Wq-N2-hZl"/>
+                    <tabBarItem key="tabBarItem" title="Menu" image="list.bullet" catalog="system" id="3Wq-N2-hZl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BCP-de-Ira">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

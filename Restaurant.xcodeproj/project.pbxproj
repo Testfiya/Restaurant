@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D506DCC22C873BB30021AD82 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D506DCC12C873BB30021AD82 /* OrderConfirmationViewController.swift */; };
 		D589D6BC2C8302E20004CFF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D589D6BB2C8302E20004CFF6 /* AppDelegate.swift */; };
 		D589D6BE2C8302E20004CFF6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D589D6BD2C8302E20004CFF6 /* SceneDelegate.swift */; };
 		D589D6C32C8302E20004CFF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D589D6C12C8302E20004CFF6 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D506DCC12C873BB30021AD82 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		D589D6B82C8302E20004CFF6 /* Restaurant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restaurant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D589D6BB2C8302E20004CFF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D589D6BD2C8302E20004CFF6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				D589D6CF2C8303E00004CFF6 /* MenuItemDetailViewController.swift */,
 				D589D6D12C8303E00004CFF6 /* MenuTableViewController.swift */,
 				D589D6D22C8303E00004CFF6 /* OrderTableViewController.swift */,
+				D506DCC12C873BB30021AD82 /* OrderConfirmationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				D589D6D52C8303E00004CFF6 /* MenuTableViewController.swift in Sources */,
 				D589D6D42C8303E00004CFF6 /* CategoryTableViewController.swift in Sources */,
 				D589D6BE2C8302E20004CFF6 /* SceneDelegate.swift in Sources */,
+				D506DCC22C873BB30021AD82 /* OrderConfirmationViewController.swift in Sources */,
 				D589D6D32C8303E00004CFF6 /* MenuItemDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

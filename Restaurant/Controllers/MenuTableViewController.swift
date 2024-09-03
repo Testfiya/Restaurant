@@ -59,8 +59,6 @@ class MenuTableViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-
-    
     
     // MARK: - Table view data source
 
@@ -75,35 +73,37 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItem", for: indexPath)
-
+        
         configure(cell, forItemAt: indexPath)
 
         return cell
     }
     
     func configure(_ cell: UITableViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? MenuItemCell else { return }
+        
         let menuItem = menuItems[indexPath.row]
         
-        var content = cell.defaultContentConfiguration()
-        content.text = menuItem.name
-        content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
-        content.image = UIImage(systemName: "photo.on.rectangle")
-        cell.contentConfiguration = content
-        Task.init {
+        cell.itemName = menuItem.name
+        cell.price = menuItem.price
+        cell.image = nil
+
+        imageLoadTasks[indexPath] = Task.init {
             if let image = try? await MenuController.shared.fetchImage(from: menuItem.imageURL) {
                 if let currentIndexPath = self.tableView.indexPath(for: cell), currentIndexPath == indexPath {
-                    var content = cell.defaultContentConfiguration()
-                    content.text = menuItem.name
-                    content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
-                    content.image = image
-                    cell.contentConfiguration = content
+                    cell.image = image
                 }
             }
+            imageLoadTasks[indexPath] = nil
         }
     }
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         imageLoadTasks[indexPath]?.cancel()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
     }
     
     @IBSegueAction func showMenuItem(_ coder: NSCoder, sender: Any?) -> MenuItemDetailViewController? {

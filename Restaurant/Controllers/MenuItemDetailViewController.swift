@@ -37,6 +37,12 @@ class MenuItemDetailViewController: UIViewController {
         itemNameLabel.text = menuItem.name
         itemPriceLabel.text = menuItem.price.formatted(.currency(code: "usd"))
         itemDetailsLabel.text = menuItem.detailText
+        
+        Task.init {
+            if let image = try? await MenuController.shared.fetchImage(from: menuItem.imageURL) {
+                imageView.image = image
+            }
+        }
     }
 
     @IBAction func orderButtonTapper(_ sender: Any) {
@@ -44,7 +50,6 @@ class MenuItemDetailViewController: UIViewController {
             self.addToOrderButton.transform = CGAffineTransform(scaleX: 2, y: 2)
             self.addToOrderButton.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: nil)
-        
         MenuController.shared.order.menuItems.append(menuItem)
     }
     

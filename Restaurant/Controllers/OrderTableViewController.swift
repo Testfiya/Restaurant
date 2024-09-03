@@ -8,6 +8,8 @@
 import UIKit
 
 class OrderTableViewController: UITableViewController {
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
+    
     var minutesToPrepareOrder = 0
     
     override func viewDidLoad() {
@@ -43,13 +45,22 @@ class OrderTableViewController: UITableViewController {
     }
     
     func configure(_ cell: UITableViewCell, atItemFor indexPath: IndexPath) {
+        guard let cell = cell as? MenuItemCell else { return }
+        
         let menuItem = MenuController.shared.order.menuItems[indexPath.row]
-            
-        var content = cell.defaultContentConfiguration()
-        content.text = menuItem.name
-        content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
-        content.image = UIImage(systemName: "photo.on.rectangle")
-        cell.contentConfiguration = content
+
+        cell.itemName = menuItem.name
+        cell.price = menuItem.price
+        cell.image = nil
+
+        imageLoadTasks[indexPath] = Task.init {
+            if let image = try? await MenuController.shared.fetchImage(from: menuItem.imageURL) {
+                if let currentIndexPath = self.tableView.indexPath(for: cell), currentIndexPath == indexPath {
+                    cell.image = image
+                }
+            }
+            imageLoadTasks[indexPath] = nil
+        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -65,6 +76,10 @@ class OrderTableViewController: UITableViewController {
             MenuController.shared.order.menuItems.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        44
     }
 
     

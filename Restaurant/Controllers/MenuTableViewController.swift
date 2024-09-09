@@ -2,7 +2,7 @@
 //  MenuTableViewController.swift
 //  Restaruant
 //
-//  Created by Mobman on 31/08/2024.
+//  Created by  on 31/08/2024.
 //
 
 import UIKit
@@ -34,11 +34,6 @@ class MenuTableViewController: UITableViewController {
                 displayError(error, title: "Failed to Fetch Menu Items for \(self.category)")
             }
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
